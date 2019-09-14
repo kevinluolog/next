@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="岁月留痕" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"right","width":null,"display":"hide","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":null}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="installinformations beamer  slide support of latex, same author with TikZ(CLI Package)">
+<meta name="keywords" content="技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandoc">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/kl_notes/sublimed/pandocd/pandoc/index.html">
+<meta property="og:site_name" content="岁月留痕">
+<meta property="og:description" content="installinformations beamer  slide support of latex, same author with TikZ(CLI Package)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-08T14:26:53.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandoc">
+<meta name="twitter:description" content="installinformations beamer  slide support of latex, same author with TikZ(CLI Package)">
+  <link rel="canonical" href="http://yoursite.com/2019/09/03/kl_notes/sublimed/pandocd/pandoc/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>pandoc | 岁月留痕</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">岁月留痕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">kevinluo</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-kl_notes">
+      
+    
+
+    <a href="/categories/kl_notes/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/kevinluolog" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/kl_notes/sublimed/pandocd/pandoc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kevinluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="岁月留痕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">pandoc
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表</span>
+
+              
+                
+              
+
+              <time title="创建：2019-09-03 14:31:37" itemprop="dateCreated datePublished" datetime="2019-09-03T14:31:37+08:00">2019-09-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新</span>
+                <time title="修改时间：2019-09-08 22:26:53" itemprop="dateModified" datetime="2019-09-08T22:26:53+08:00">2019-09-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kl-notes/" itemprop="url" rel="index"><span itemprop="name">kl_notes</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kl-notes/sublimed/" itemprop="url" rel="index"><span itemprop="name">sublimed</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kl-notes/sublimed/pandocd/" itemprop="url" rel="index"><span itemprop="name">pandocd</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">字数：</span>
+              
+              <span>9.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>9 分</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><h1 id="informations"><a href="#informations" class="headerlink" title="informations"></a>informations</h1><ol>
+<li><p><a href="https://ctan.org/pkg/beamer" target="_blank" rel="noopener">beamer</a></p>
+<p> slide support of latex, same author with TikZ(CLI Package)</p>
+</li>
+</ol><a id="more"></a>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="basic"><a href="#basic" class="headerlink" title="basic"></a>basic</h3><ol>
+<li><p>pandoc -f -t -o</p>
+<pre><code>-f --from:-r --read： inputfile format
+-t --to:-w --write: outputfile format
+pandoc -f markdown -t latex hello.txt -o hi.tex</code></pre></li>
+<li><p>–list-output-formats –list-input-formats</p>
+<p> 查看输入输出格式支持格式</p>
+</li>
+<li><p>–atx-headers</p>
+<p> Use ATX-style headings in Markdown output. The default is to use setext-style headings for levels 1 to 2, and then ATX headings.</p>
+</li>
+<li><p>–reference-links</p>
+</li>
+</ol>
+<h3 id="template"><a href="#template" class="headerlink" title="template"></a>template</h3><ol>
+<li><p>-V/–variable</p>
+<p> Templates contain variables, which allow for the inclusion of arbitrary information at any point in the file. They may be <strong>set at the command line using the -V/–variable option</strong>. </p>
+<p> <em>If a variable is not set</em>, pandoc will look for the key in the document’s metadata – which can be <strong>set using either YAML metadata blocks or with the -M/–metadata option</strong>.</p>
+<p> <code>-V slidy-url=slidy2</code> : 指定slidy Javascriptions 引用路径</p>
+</li>
+<li><p>pandoc -D <em>FORMAT</em></p>
+<p> where FORMAT is the name of the output format. A custom template can be specified using the –template option. You can also override the system default templates for a given output format FORMAT by putting a file templates default.<em>FORMAT</em> in the user data directory (see <strong>–data-dir</strong>, above). Exceptions:</p>
+<ul>
+<li><p>For odt output, customize the default.opendocument template.</p>
+</li>
+<li><p>For pdf output, customize the <strong>default.latex</strong> template (or the<br>default.context template, if you use -t context, or the default.ms template, if you use -t ms, or the default.html template, if you use -t html).</p>
+</li>
+<li><p>docx and pptx have no template (however, you can use –reference-doc to customize the output).</p>
+<pre><code>pandoc slidy00.md .\templates\metadata.yml -o slidy00.tex --template .\templates\default.latex
+or
+pandoc slidy00.md .\templates\metadata.yml -o slidy00.tex --data-dir= .\templates</code></pre></li>
+</ul>
+</li>
+</ol>
+<h3 id="pdf"><a href="#pdf" class="headerlink" title="pdf"></a>pdf</h3><ol>
+<li><p>–pdf-engine=xelatex</p>
+<pre><code>xelatex： unicode汉字支持，新
+pdflatex: 不支持汉字，旧
+-t html defaults to --pdf-engine=wkhtmltopdf</code></pre></li>
+<li><p>-N,–number-sections</p>
+<p> Number section headings in LaTeX, ConTeXt, HTML, or EPUB output. By default, sections are not numbered.</p>
+</li>
+</ol>
+<h3 id="slide"><a href="#slide" class="headerlink" title="slide"></a>slide</h3><ol>
+<li><p>–number-offset=NUMBER[,NUMBER,…]</p>
+<p> [slide list item show one by one]</p>
+</li>
+<li><p>–slide-level=NUMBER</p>
+<p> Specifies that headings with the specified level create slides (for beamer, s5, slidy, slideous, dzslides).</p>
+</li>
+<li><p>–reference-doc=FILE</p>
+<p> Use the specified file as a style reference in producing a docx or ODT file.</p>
+<ul>
+<li><p>Docx</p>
+<ul>
+<li><p>reference.docx:  </p>
+<p>  pandoc -o custom-reference.docx –print-default-data-file reference.docx.</p>
+</li>
+</ul>
+</li>
+<li><p>PowerPoint</p>
+<ul>
+<li><p>reference.pptx: </p>
+<p>  pandoc -o custom-reference.pptx –print-default-data-file reference.pptx</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>title-meta, author-meta, and date-meta</p>
+<ul>
+<li><p>pandoc:</p>
+<pre><code>% title
+% author(s) (separated by semicolons)
+% date
+
+有没有的要加%空行
+
+%
+% Author
+
+% My title
+%
+% June 15, 2006</code></pre></li>
+</ul>
+</li>
+<li><p><code>--resource-path --extract-media</code></p>
+<pre><code>pandoc -t slideous -s slidy.md -o slidous.html -i --resource-path=.:resource\pic --extract-media=resource\pic
+
+--extract-media： 表示把链接的文件输出到指定的目录
+--resource-path： 表示指定链接的相对位置，相对于工作目录，用了这个需要显示指明当前目录.。同时这个选项只能和--self-contained 或者--extract-media一起用。</code></pre></li>
+</ol>
+<h3 id="Math-rendering-in-HTML"><a href="#Math-rendering-in-HTML" class="headerlink" title="Math rendering in HTML"></a>Math rendering in HTML</h3><ol>
+<li>–mathjax[=URL]</li>
+<li>–mathml</li>
+<li>–webtex[=URL]</li>
+</ol>
+<p>Convert TeX formulas to <img> tags that link to an external script that converts formulas to images. </p>
+<p>svg: <a href="https://latex.codecogs.com/svg.latex?" target="_blank" rel="noopener">https://latex.codecogs.com/svg.latex?</a><br>png: <a href="https://latex.codecogs.com/png.latex?" target="_blank" rel="noopener">https://latex.codecogs.com/png.latex?</a></p>
+<h1 id="command"><a href="#command" class="headerlink" title="command"></a>command</h1><h2 id="md-gt-web-slide-reveal-js-s5-slideous-slidy"><a href="#md-gt-web-slide-reveal-js-s5-slideous-slidy" class="headerlink" title="md-&gt;web slide (reveal.js s5 slideous slidy)"></a>md-&gt;web slide (reveal.js s5 slideous slidy)</h2><h3 id="slide-Javascription-solutions"><a href="#slide-Javascription-solutions" class="headerlink" title="slide Javascription solutions"></a>slide Javascription solutions</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>explaination</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dzslides</td>
+<td>(DZSlides HTML5 + JavaScript slide show)</td>
+</tr>
+<tr>
+<td>revealjs</td>
+<td>(reveal.js HTML5 + JavaScript slide show)</td>
+</tr>
+<tr>
+<td>s5</td>
+<td>(S5 HTML and JavaScript slide show)</td>
+</tr>
+<tr>
+<td>slideous</td>
+<td>(Slideous HTML and JavaScript slide show)</td>
+</tr>
+<tr>
+<td>slidy</td>
+<td>(Slidy HTML and JavaScript slide show)</td>
+</tr>
+</tbody></table>
+<h3 id="default-Url-location"><a href="#default-Url-location" class="headerlink" title="default Url location"></a>default Url location</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>explaination</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>revealjs-url</td>
+<td>base URL for reveal.js (defaults to reveal.js)</td>
+</tr>
+<tr>
+<td>s5-url</td>
+<td>base URL for S5  (defaults to s5/default)</td>
+</tr>
+<tr>
+<td>slideous-url</td>
+<td>base URL for Slideous (defaults to slideous)</td>
+</tr>
+<tr>
+<td>slidy-url</td>
+<td>base URL for Slidy (defaults to <a href="https://www.w3.org/Talks/Tools/Slidy2" target="_blank" rel="noopener">https://www.w3.org/Talks/Tools/Slidy2</a>)</td>
+</tr>
+</tbody></table>
+<h3 id="web-slide-commad"><a href="#web-slide-commad" class="headerlink" title="web slide commad:"></a>web slide commad:</h3><ol>
+<li><p>md-&gt;dzslides</p>
+<pre><code>pandoc -t dzslides -s slidy.md -o dzslides.html -i --slide-level=2 --resource-path=.:resource\pic --extract-media=resource\pic</code></pre></li>
+<li><p>md-&gt;revealjs:</p>
+<pre><code>pandoc -t revealjs -s slidy.md -o revealjs.html -i --slide-level=2 --resource-path=.:resource\pic --extract-media=resource\pic -V revealjs-url=reveal.js</code></pre></li>
+<li><p>md-&gt;s5:</p>
+<pre><code>pandoc -t s5 -s slidy.md -o s5.html -i --slide-level=2 --resource-path=.:resource\pic --extract-media=resource\pic -V s5-url=s5\ui\default</code></pre></li>
+<li><p>md-&gt;slideous:</p>
+<pre><code>pandoc -t slideous -s slidy.md -o slideous.html -i --slide-level=1 --resource-path=.:resource\pic --extract-media=resource\pic -V s5-url=slideous</code></pre></li>
+<li><p>md-&gt;slidy:</p>
+<pre><code>pandoc -t slidy -s slidy.md -o slidy.html -i --slide-level=2 --resource-path=.:resource\pic --extract-media=resource\pic -V slidy-url=slidy2</code></pre></li>
+</ol>
+<h3 id="command-md-gt-pdf"><a href="#command-md-gt-pdf" class="headerlink" title="command (md-&gt;pdf):"></a>command (md-&gt;pdf):</h3><ol>
+<li><p>xelatex 终稿</p>
+<p> 配合两个文件：</p>
+<ul>
+<li><p>metadata.yaml</p>
+<p>  元变量 可用 -V 在命令行输入</p>
+</li>
+<li><p>default.latex</p>
+<p>  修改了latex的模板，主要是为了框线链接</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 分两步，-&gt;.tex -&gt;.pdf
+
+        pandoc slidy00.md .\templates\metadata.yaml -o slidy00.tex -s -N --toc --toc-depth=3 --template .\templates\default.latex
+
+        xelatex slidy00.tex
+
+- 一步头
+
+        pandoc slidy00.md .\templates\metadata.yaml --pdf-engine=xelatex -o slidy00.pdf -s -N --toc --toc-depth=3 --data-dir=.\templates</code></pre><ol start="2">
+<li><p>xelatex</p>
+<pre><code>pandoc slidy.md -o pdf.pdf --pdf-engine=xelatex -i</code></pre><ul>
+<li><p>xelatex可以支持中文，同时缺省是支持目录的。 </p>
+</li>
+<li><p>所以不用加-toc,–table-of-contents, </p>
+</li>
+<li><p>-i,表示目录加上数字</p>
+<pre><code>pandoc slidy.md -o pdf.tex -s
+xelatex pdf.tex -o pdf1.pdf -V CJKmainfont=xecjk</code></pre></li>
+</ul>
+</li>
+<li><p>参考网上xelatex</p>
+<p> <a href="https://www.jianshu.com/p/dcc2f95cc086" target="_blank" rel="noopener">参考链接</a></p>
+<pre><code>pandoc --pdf-engine=xelatex --template=D:\tools\Pandoc\pm-template.latex test.md -o test.pdf</code></pre><p> <a href="https://github.com/tzengyuxio/pages/blob/gh-pages/pandoc/pm-template.latex" target="_blank" rel="noopener">Tzeng Yuxio的支持中文latex模板文件</a></p>
+</li>
+</ol>
+<h3 id="command-md-gt-html"><a href="#command-md-gt-html" class="headerlink" title="command (md-&gt;html)"></a>command (md-&gt;html)</h3><ol>
+<li><p>my</p>
+</li>
+<li><p>参考网上</p>
+<pre><code>pandoc -s -f gfm -t html5 --css=css/markdownPad-github.css test.md -o test.html</code></pre><p> <a href="https://github.com/nicolashery/markdownpad-github" target="_blank" rel="noopener">markdownPad-github.css</a></p>
+<p> 自己指定CSS显示模板</p>
+</li>
+</ol>
+<h1 id="faq"><a href="#faq" class="headerlink" title="faq"></a>faq</h1><h2 id="pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s-–stand-alone"><a href="#pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s-–stand-alone" class="headerlink" title="pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s –stand-alone"></a>pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s –stand-alone</h2><ol>
+<li><p>To produce an HTML/JavaScript slide show, simply type</p>
+<p> pandoc -t FORMAT -s habits.txt -o habits.html</p>
+<p> where FORMAT is either s5, slidy, slideous, dzslides, or revealjs.</p>
+<p> For Slidy, Slideous, reveal.js, and S5, the file produced by pandoc with the -s/–standalone option embeds a link to JavaScript and CSS files, which are assumed to be available at the relative path s5/default (for S5), slideous (for Slideous), reveal.js (for reveal.js), or at the Slidy website at w3.org (for Slidy). </p>
+</li>
+<li><p>These paths can be changed by setting variables: the slidy-url, slideous-url, revealjs-url, or s5-url </p>
+<pre><code>变量前面要加上 -V
+-V slidy-url=slidy2 : 指定slidy Javascriptions 引用路径</code></pre></li>
+<li><p>For DZSlides, the (relatively short) JavaScript and CSS are included in the file by default.</p>
+</li>
+<li><p>With all HTML slide formats, the <code>--self-contained</code> option can be used to produce a single file that contains all of the data necessary to display the slide show, including linked scripts, stylesheets, images, and videos.</p>
+</li>
+</ol>
+<h2 id="怎么直接生成网页SLIDE"><a href="#怎么直接生成网页SLIDE" class="headerlink" title="怎么直接生成网页SLIDE?"></a>怎么直接生成网页SLIDE?</h2><pre><code>pandoc -t FORMAT -s habits.txt -o habits.html
+-i : incremental 指定逐步显示列表项
+-slide--level: 指定第几级Header开始分slide页面
+-s --stand-alone: 相对目录（slidy 除外），并包头部</code></pre><h2 id="怎么把javascript-css链接资源定位到指定目录"><a href="#怎么把javascript-css链接资源定位到指定目录" class="headerlink" title="怎么把javascript/css链接资源定位到指定目录"></a>怎么把javascript/css链接资源定位到指定目录</h2><p>slidy-url, slideous-url, revealjs-url, or s5-url variables</p>
+<h2 id="怎么把图片链接资源定位到指定目录"><a href="#怎么把图片链接资源定位到指定目录" class="headerlink" title="怎么把图片链接资源定位到指定目录"></a>怎么把图片链接资源定位到指定目录</h2><pre><code>pandoc -t slideous -s slidy.md -o slidous.html -i --resource-path=.:resource\pic --extract-media=resource\pic</code></pre><h2 id="怎么直接生成pdf形式的PPT-t-beamer"><a href="#怎么直接生成pdf形式的PPT-t-beamer" class="headerlink" title="怎么直接生成pdf形式的PPT? -t beamer"></a>怎么直接生成pdf形式的PPT? -t beamer</h2><p>To produce a PDF slide show using beamer, type</p>
+<pre><code>pandoc -t beamer habits.txt -o habits.pdf</code></pre><h2 id="怎么直接生成DOCX文件？"><a href="#怎么直接生成DOCX文件？" class="headerlink" title="怎么直接生成DOCX文件？"></a>怎么直接生成DOCX文件？</h2><pre><code>pandoc slidy.md -o slide.docx --toc --toc-depth=6 -N
+--toc, --table-of-contents
+--toc-depth=NUMBER
+--resource-path=SEARCHPATH : --resource-path=.:test will search the working directory and the test subdirectory</code></pre><h2 id="怎么指定并修改pandoc用的pptx-docX的模板文件？"><a href="#怎么指定并修改pandoc用的pptx-docX的模板文件？" class="headerlink" title="怎么指定并修改pandoc用的pptx/docX的模板文件？"></a>怎么指定并修改pandoc用的pptx/docX的模板文件？</h2><h2 id="为何LaTex的book类型中，目录及chapter前自动插入空白页面"><a href="#为何LaTex的book类型中，目录及chapter前自动插入空白页面" class="headerlink" title="为何LaTex的book类型中，目录及chapter前自动插入空白页面?"></a>为何LaTex的book类型中，目录及chapter前自动插入空白页面?</h2><ul>
+<li><p><a href="https://blog.csdn.net/Sarah_LZ/article/details/90737631" target="_blank" rel="noopener">LaTex的book类型中，目录及chapter前自动插入空白页面</a></p>
+<ol>
+<li><p>如题，在book中开新的chapter，前面总是自动留空白页面，而且封面与目录之间也总是多出一张空白页，怎么设置页码都不会消除. </p>
+<p> 原因说明</p>
+<p> 在book类中，默认目录与每一章都从奇数页码开始，如果上一章的结束刚好是奇数页码，就默认在后面补充一张空白页作为偶数页，使得下一章仍从奇数页码开始. 这是book的排版规范.</p>
+<p> 此外documentclass中有一对选项openright和openany, book类默认为openright模式，这也是为什么book类的奇数页面与偶数页面的左右页边距刚好相反的原因.</p>
+</li>
+<li><p>如何解决book中自动留白的问题</p>
+<p> 还有一对选项：oneside和twoside，book类文档默认为twoside模式：双面打印模式，在这种模式下，默认新章节从奇数页码开始打印，所以会自动留白,<br> 我们只需要在documentclass的选项中指定book为oneside的模式，就可以消除留白. 如下：<br> ‘\documentclass[UTF8,a4paper,15pt,titlepage,oneside]{ctexbook}’</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="拼接PDF"><a href="#拼接PDF" class="headerlink" title="拼接PDF"></a>拼接PDF</h2><p>其实用tex就可以合并pdf, 而且这个方法是跨平台的,无论widows, linux, Mac X, 只要有装了tex和宏包pdfpages,这个宏包一般的tex发行版默认都包含了, texlive就已经有了.<br>代码:</p>
+<pre><code>\documentclass[a4paper]{article}
+\usepackage{pdfpages}
+\begin{document}
+\includepdfmerge{1.pdf,1-3}
+\includepdfmerge{2.pdf,5-13}
+\end{document}
+其中命令\includepdfmerge{1.pdf,1-3}就是导入1.pdf的1至3页.
+命令\includepdfmerge{2.pdf,5-13}就是导入2.pdf的5至13页.</code></pre><h2 id="md-pdfbook时，怎么添加章节号？-markdown语法解决"><a href="#md-pdfbook时，怎么添加章节号？-markdown语法解决" class="headerlink" title="md-pdfbook时，怎么添加章节号？ markdown语法解决"></a>md-pdfbook时，怎么添加章节号？ markdown语法解决</h2><ul>
+<li><p><a href="https://blog.csdn.net/F8qG7f9YD02Pe/article/details/83629436" target="_blank" rel="noopener">用 Pandoc 生成一篇调研论文 | Linux 中国</a></p>
+<pre><code>Implementation 这个标题使用了 H1 并且声明了一个 {#sec:implementation} 的标签，这是作者用于引用该章节的标签。要想引用一个章节，输入 @符号并跟上对应章节标签，使用方括号括起来即可： [@sec:implementation]</code></pre></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://www.jianshu.com/p/be291ac296c3" target="_blank" rel="noopener">Pandoc使用技巧</a></li>
+<li><a href="https://www.jianshu.com/p/a97b4a9f6d5b" target="_blank" rel="noopener">【转】RStudio+Markdown+Pandoc的中文配置</a></li>
+<li><a href="https://www.jianshu.com/p/0e0abc6feeb3" target="_blank" rel="noopener">Pandoc中使用Reveal.js制作幻灯片</a></li>
+<li><a href="https://www.jianshu.com/p/dcc2f95cc086" target="_blank" rel="noopener">Pandoc的使用和遇到的问题</a></li>
+</ul>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="pandoc-基本命令"><a href="#pandoc-基本命令" class="headerlink" title="pandoc 基本命令"></a>pandoc 基本命令</h2><pre><code>-f: 指定输入格式，比如docx、epub、md、html等
+-t: 指定输出格式，比如docx、epub、md、html等
+-o: 输出到file文件
+--verbost: 显示详细调试信息
+--log： 指定输出日志信息
+
+--list-input-formats：列出支持的输入格式。
+--list-output-formats：列出支持的输出格式。
+--list-extensions：列表支持Markdown扩展，后面跟一个+或者-说明是否在pandoc的Markdown中默认启用。
+--list-highlight-languages:列出语法突出显示支持的语言。
+--list-highlight-styles:列出支持语法高亮的样式。。
+-v: 打印版本信息。
+-h：显示语法帮助</code></pre><h2 id="pandoc帮助文档摘录"><a href="#pandoc帮助文档摘录" class="headerlink" title="pandoc帮助文档摘录"></a>pandoc帮助文档摘录</h2><h3 id="待处理摘录"><a href="#待处理摘录" class="headerlink" title="待处理摘录"></a>待处理摘录</h3><pre><code>package: xcolor hypreff 用来设置TOC颜色 link外框线</code></pre><h3 id="Heading-identifiers"><a href="#Heading-identifiers" class="headerlink" title="Heading identifiers"></a>Heading identifiers</h3><pre><code>- Extension: header_attributes
+    {#identifier .class .class key=value key=value}
+- example: will all be assigned the identifier foo:
+    # My heading {#foo}
+    ## My heading ##    {#foo}
+    My other heading   {#foo}
+
+- Headings with the class unnumbered will not be numbered, even if --number-sections is specified. 
+    # My heading {-}
+    is just the same as
+    # My heading {.unnumbered}
+Like regular reference links, these references are case-insensitive.
+
+-Extension: implicit_header_references
+
+- My heading {-}
+is just the same as
+- My heading {.unnumbered}
+Like regular reference links, these references are case-insensitive.
+
+Extension: implicit_header_references</code></pre><h2 id="Writage是一款word插件"><a href="#Writage是一款word插件" class="headerlink" title="Writage是一款word插件"></a>Writage是一款word插件</h2><p><a href="http://www.writage.com/" target="_blank" rel="noopener">下载网址为</a><br>支持markdown与word互相转换</p>
+<h1 id="tips-1"><a href="#tips-1" class="headerlink" title="tips"></a>tips</h1><h2 id="列出电脑中已安装字体"><a href="#列出电脑中已安装字体" class="headerlink" title="列出电脑中已安装字体"></a>列出电脑中已安装字体</h2><p>列出所有的中文字体的字体族名，要列出日文和韩文 zh改成 ja或 ko。</p>
+<pre><code>fc-list -f &quot;%{family}\n&quot; :lang=zh &gt; zhfont.txt</code></pre><h2 id="文档内部跳转"><a href="#文档内部跳转" class="headerlink" title="文档内部跳转"></a>文档内部跳转</h2><ol>
+<li><p>先定义一个锚(id)</p>
+<pre><code>&lt;span id=&quot;jump&quot;&gt;Hello World&lt;/span&gt;</code></pre></li>
+<li><p>然后使用markdown的语法:</p>
+<pre><code>[XXXX](#jump)</code></pre></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/技术/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/02/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/03/kl_notes/sublimed/Sublime/" rel="prev" title="sublime">
+                  sublime <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#informations"><span class="nav-number">2.</span> <span class="nav-text">informations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tips"><span class="nav-number">3.</span> <span class="nav-text">tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数"><span class="nav-number">3.1.</span> <span class="nav-text">参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic"><span class="nav-number">3.1.1.</span> <span class="nav-text">basic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template"><span class="nav-number">3.1.2.</span> <span class="nav-text">template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pdf"><span class="nav-number">3.1.3.</span> <span class="nav-text">pdf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slide"><span class="nav-number">3.1.4.</span> <span class="nav-text">slide</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-rendering-in-HTML"><span class="nav-number">3.1.5.</span> <span class="nav-text">Math rendering in HTML</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#command"><span class="nav-number">4.</span> <span class="nav-text">command</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#md-gt-web-slide-reveal-js-s5-slideous-slidy"><span class="nav-number">4.1.</span> <span class="nav-text">md-&gt;web slide (reveal.js s5 slideous slidy)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slide-Javascription-solutions"><span class="nav-number">4.1.1.</span> <span class="nav-text">slide Javascription solutions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default-Url-location"><span class="nav-number">4.1.2.</span> <span class="nav-text">default Url location</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-slide-commad"><span class="nav-number">4.1.3.</span> <span class="nav-text">web slide commad:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-md-gt-pdf"><span class="nav-number">4.1.4.</span> <span class="nav-text">command (md-&gt;pdf):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-md-gt-html"><span class="nav-number">4.1.5.</span> <span class="nav-text">command (md-&gt;html)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#faq"><span class="nav-number">5.</span> <span class="nav-text">faq</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s-–stand-alone"><span class="nav-number">5.1.</span> <span class="nav-text">pandoc生成SLIDE时，怎么用本地相对路径嵌入javascription代码？-s –stand-alone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么直接生成网页SLIDE"><span class="nav-number">5.2.</span> <span class="nav-text">怎么直接生成网页SLIDE?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么把javascript-css链接资源定位到指定目录"><span class="nav-number">5.3.</span> <span class="nav-text">怎么把javascript/css链接资源定位到指定目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么把图片链接资源定位到指定目录"><span class="nav-number">5.4.</span> <span class="nav-text">怎么把图片链接资源定位到指定目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么直接生成pdf形式的PPT-t-beamer"><span class="nav-number">5.5.</span> <span class="nav-text">怎么直接生成pdf形式的PPT? -t beamer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么直接生成DOCX文件？"><span class="nav-number">5.6.</span> <span class="nav-text">怎么直接生成DOCX文件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么指定并修改pandoc用的pptx-docX的模板文件？"><span class="nav-number">5.7.</span> <span class="nav-text">怎么指定并修改pandoc用的pptx/docX的模板文件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为何LaTex的book类型中，目录及chapter前自动插入空白页面"><span class="nav-number">5.8.</span> <span class="nav-text">为何LaTex的book类型中，目录及chapter前自动插入空白页面?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拼接PDF"><span class="nav-number">5.9.</span> <span class="nav-text">拼接PDF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#md-pdfbook时，怎么添加章节号？-markdown语法解决"><span class="nav-number">5.10.</span> <span class="nav-text">md-pdfbook时，怎么添加章节号？ markdown语法解决</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.1.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">7.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pandoc-基本命令"><span class="nav-number">7.1.</span> <span class="nav-text">pandoc 基本命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pandoc帮助文档摘录"><span class="nav-number">7.2.</span> <span class="nav-text">pandoc帮助文档摘录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#待处理摘录"><span class="nav-number">7.2.1.</span> <span class="nav-text">待处理摘录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Heading-identifiers"><span class="nav-number">7.2.2.</span> <span class="nav-text">Heading identifiers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writage是一款word插件"><span class="nav-number">7.3.</span> <span class="nav-text">Writage是一款word插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tips-1"><span class="nav-number">8.</span> <span class="nav-text">tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列出电脑中已安装字体"><span class="nav-number">8.1.</span> <span class="nav-text">列出电脑中已安装字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档内部跳转"><span class="nav-number">8.2.</span> <span class="nav-text">文档内部跳转</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kevinluo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kevinluo</span>
+</div>
+
+          
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      </span>
+    
+  
+    
+      <span class="post-meta-divider">|</span>
+    
+
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      </span>
+    
+
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+	 	<script src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script>
+	 	<!-- ҳ�������� -->
+	 	<script type="text/javascript" src="/js/hanzi.js"></script>
+		<!-- ҳ����С���� -->
+		<script type="text/javascript" src="/js/clicklove.js"></script>
+
+</body>
+</html>
+

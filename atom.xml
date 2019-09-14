@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>岁月留痕</title>
+  <icon>http://yoursite.com/icon.png</icon>
+  <subtitle>kevinluo</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-09-04T14:16:47.903Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>kevinluo</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>my</title>
+    <link href="http://yoursite.com/2019/09/04/my/index/"/>
+    <id>http://yoursite.com/2019/09/04/my/index/</id>
+    <published>2019-09-04T12:31:37.000Z</published>
+    <updated>2019-09-04T14:16:47.903Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;测试画图插件&lt;/p&gt;
+&lt;p&gt;[][.\t]&lt;/p&gt;
+&lt;h2 id=&quot;test-for-flowchart-js&quot;&gt;&lt;a href=&quot;#test-for-flowchart-js&quot; class=&quot;headerlink&quot; title=&quot;test for
+        
+      
+    
+    </summary>
+    
+    
+      <category term="my" scheme="http://yoursite.com/categories/my/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>t</title>
+    <link href="http://yoursite.com/2019/09/04/my/t/"/>
+    <id>http://yoursite.com/2019/09/04/my/t/</id>
+    <published>2019-09-04T09:31:37.000Z</published>
+    <updated>2019-09-10T07:56:21.331Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;测试画图插件&lt;/p&gt;&lt;h2 id=&quot;test-for-flowchart-js&quot;&gt;&lt;a href=&quot;#test-for-flowchart-js&quot; class=&quot;headerlink&quot; title=&quot;test for flowchart.js&quot;&gt;&lt;/a&gt;test for flowchart.js&lt;/h2&gt;&lt;div id=&quot;flowchart-0&quot; class=&quot;flow-chart&quot;&gt;&lt;/div&gt;&lt;h2 id=&quot;hi&quot;&gt;&lt;a href=&quot;#hi&quot; class=&quot;headerlink&quot; title=&quot;hi&quot;&gt;&lt;/a&gt;hi&lt;/h2&gt;&lt;p&gt;代码测试：&lt;/p&gt;&lt;p&gt;``javascript&lt;br&gt;    if (typeof Velocity === ‘function’) {&lt;br&gt;      Velocity(siteNav, animateAction, {&lt;br&gt;        duration: 200,&lt;br&gt;        complete: function() {&lt;br&gt;          siteNav.classList.toggle(ON_CLASS_NAME);&lt;br&gt;        }&lt;br&gt;      });&lt;br&gt;    } else {&lt;br&gt;      siteNav.classList.toggle(ON_CLASS_NAME);&lt;br&gt;    }&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="散文" scheme="http://yoursite.com/categories/%E6%95%A3%E6%96%87/"/>
+    
+      <category term="心情" scheme="http://yoursite.com/categories/%E6%95%A3%E6%96%87/%E5%BF%83%E6%83%85/"/>
+    
+    
+      <category term="sports" scheme="http://yoursite.com/tags/sports/"/>
+    
+      <category term="essay" scheme="http://yoursite.com/tags/essay/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sublime</title>
+    <link href="http://yoursite.com/2019/09/03/kl_notes/sublimed/Sublime/"/>
+    <id>http://yoursite.com/2019/09/03/kl_notes/sublimed/Sublime/</id>
+    <published>2019-09-03T09:31:37.000Z</published>
+    <updated>2019-09-05T04:53:43.236Z</updated>
+    
+    <summary type="html">
+    
+      this the description of sublime
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="sublime" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/sublime/"/>
+    
+    
+      <category term="技术" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pandoc</title>
+    <link href="http://yoursite.com/2019/09/03/kl_notes/sublimed/pandocd/pandoc/"/>
+    <id>http://yoursite.com/2019/09/03/kl_notes/sublimed/pandocd/pandoc/</id>
+    <published>2019-09-03T06:31:37.000Z</published>
+    <updated>2019-09-08T14:26:53.047Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;install&quot;&gt;&lt;a href=&quot;#install&quot; class=&quot;headerlink&quot; title=&quot;install&quot;&gt;&lt;/a&gt;install&lt;/h1&gt;&lt;h1 id=&quot;informations&quot;&gt;&lt;a href=&quot;#informations&quot; class=&quot;headerlink&quot; title=&quot;informations&quot;&gt;&lt;/a&gt;informations&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://ctan.org/pkg/beamer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;beamer&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; slide support of latex, same author with TikZ(CLI Package)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="kl_notes" scheme="http://yoursite.com/categories/kl-notes/"/>
+    
+      <category term="sublimed" scheme="http://yoursite.com/categories/kl-notes/sublimed/"/>
+    
+      <category term="pandocd" scheme="http://yoursite.com/categories/kl-notes/sublimed/pandocd/"/>
+    
+    
+      <category term="技术" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2019/09/02/hello-world/"/>
+    <id>http://yoursite.com/2019/09/02/hello-world/</id>
+    <published>2019-09-02T11:59:35.979Z</published>
+    <updated>2019-09-04T12:37:32.615Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="welcome" scheme="http://yoursite.com/categories/welcome/"/>
+    
+      <category term="hello" scheme="http://yoursite.com/categories/welcome/hello/"/>
+    
+    
+      <category term="hello" scheme="http://yoursite.com/tags/hello/"/>
+    
+  </entry>
+  
+</feed>
