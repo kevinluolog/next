@@ -1,0 +1,110 @@
+.. .. title:: directive 定义 正标题
+
+.. 正标题
+
+********
+make
+********
+
+
+.. 副标题
+
+-----------------
+make and makefile
+-----------------
+
+.. .. default-role:: superscript
+
+:Author: kevinluo
+:Address: 
+:Contact: kevinluo_72@163.com
+:Authors: 
+:organization: 
+:date: |date|
+:status: 
+:revision: 
+:version: 
+:copyright:
+
+:abstract:
+
+    This document is memo for usage of makefile and make.
+
+.. meta::
+   :keywords: makefile,make
+
+
+.. :backlinks:"entry" or "top" or "none"
+
+.. 
+ .. section-numbering::
+   :depth: 6
+   :start: 1
+.. 
+   :prefix:
+   :suffix:
+
+.. contents:: contents
+   :depth: 6
+   :backlinks: entry
+   :local:
+
+
+.. |date| date::
+
+
+
+FAQ
+======
+
+
+Makefile变量$@，$^，$<代表的意义
+---------------------------------
+
+`makefile中$@ $^ %\<使用 <https://www.cnblogs.com/baiduboy/p/6849587.html>`__
+
+$@--目标文件，$^--所有的依赖文件，$<--第一个依赖文件。
+
+# 这是再一次简化后的Makefile
+
+::
+
+    main：main.o mytool1.o mytool2.o
+    gcc -o $@ $^
+    .c.o：
+    gcc -c $<
+
+怎么查到函数是哪个库的？
+---------------------------
+
+有时候我们使用了某个函数，但是我们不知道库的名字，这个时候怎么办呢?
+
+比如我要找sin这个函数所在的库。 就只好用命令
+
+::
+
+  nm -o /lib/\*.so|grep sin>~/sin
+
+然后看~/sin文件，会找到这样的一行
+
+::
+
+    libm-2.1.2.so：00009fa0 W sin 
+
+这样我就知道了sin在 libm-2.1.2.so库里面，
+-lm选项就可以了(去掉前面的lib和后面的版本标志，就剩下m了所以是 -lm)。
+
+::
+
+    gcc -o temp temp.c -lm
+
+只知道函数的大概形式，怎么找到头文件。用man
+---------------------------------------------
+
+想知道fread这个函数的确切形式，我们只要执行 man fread 系统就会输出着函数的详细解释的。和这个函数所在的头文件说明了。 
+
+如果我们要write这个函数的说明，当我们执行 `man write` 时，输出的结果却不是我们所需要的。 因为我们要的是write这个函数的说明，可是出来的却是write这个命令的说明。
+为了得到write的函数说明我们要用 `man 2 write` 2表示我们用的write这个函数是系统调用函数，还有一个我们常用的是3表示函数是C的库函数。
+
+
+
