@@ -3,7 +3,7 @@
   <title>岁月留痕</title>
   <icon>http://yoursite.com/icon.png</icon>
   <subtitle>kevinluo</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/next/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
   <updated>2019-09-04T14:16:47.903Z</updated>
